@@ -21,4 +21,15 @@ public class UserInfo {
                 ", umoeny=" + umoeny +
                 '}';
     }
+	
+	 @Override
+    public String toString() {
+        return "UserInfo{" +
+                "uid=" + uid +
+                ", uname='" + uname + '\'' +
+                ", upwd='" + upwd + '\'' +
+                ", uflag='" + uflag + '\'' +
+                ", umoeny=" + umoeny +
+                '}';
+    }
 }
