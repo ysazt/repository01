@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ambow.dao.UserDao">
+
+    <select id="loginDao" parameterType="UserInfo" resultType="UserInfo">
+        select * from db_user where uname=#{uname}  and upwd=#{upwd}
+    </select>
+
+    <update id="userUmoenyDao" parameterType="UserInfo">
+       update  db_user set umoeny=#{umoeny} where uid=#{uid}
+    </update>
+
+    <update id="chognzhiPwd" >
+        update  db_user set upwd='123456' where uname=#{name}
+    </update>
+</mapper>

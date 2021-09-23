@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ambow.dao.BookDao">
+
+   <select id="allBook" resultType="BookInfo">
+      select * from db_book
+   </select>
+
+   <select id="byidBook" resultType="BookInfo">
+      select * from db_book where bookid=#{id}
+   </select>
+
+   <update id="updateBook" parameterType="BookInfo">
+      update db_book set bnum=#{bnum} where bookid=#{bookid}
+   </update>
+</mapper>

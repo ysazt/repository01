@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ambow.dao.YuyueDao">
+
+   <insert id="addYuyue" parameterType="YuyueInfo">
+       insert into db_yuyue (yuid,ybid,ytimebegin,yflag)values (#{yuid.uid},#{ybid.bookid},#{ytimebegin},#{yflag});
+   </insert>
+    <select id="byUidYuyue" resultType="YuyueInfo">
+         select * from db_yuyue where yuid =#{uid} and yflag=0
+    </select>
+
+    <select id="byFlagYuyue" resultType="int">
+        select ybid from db_yuyue where  yflag=#{yflag}
+    </select>
+</mapper>

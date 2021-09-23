@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ambow.dao.ShopDao">
+    <resultMap id="shopMap" type="ShopInfo">
+        <id column="shopid" property="shopid"></id>
+        <result column="snum" property="snum"></result>
+        <result column="stime" property="stime"></result>
+        <result column="sfalg" property="sflag"></result>
+        <association property="sbid" javaType="BookInfo">
+            <id property="bookid" column="bookid"></id>
+            <result property="bname" column="bname"></result>
+            <result property="bprice" column="bprice"></result>
+            <result property="bnum" column="bnum"></result>
+            <result property="bimg" column="bimg"></result>
+        </association>
+    </resultMap>
+
+    <select id="myShop" resultMap="shopMap">
+        select * from db_shop s , db_book b where s.sbid=b.bookid and  suid=#{uid}  and  sflag=#{sflag}
+    </select>
+
+    <select id="myShopBook" resultType="ShopInfo">
+        select * from db_shop  where  suid=#{uid} and sbid=#{bookid}  and  sflag='0'
+    </select>
+
+    <select id="byidShop" resultMap="shopMap">
+        select * from db_shop s , db_book b where s.sbid=b.bookid and  shopid=#{shopid}
+    </select>
+
+    <insert id="addShop" parameterType="ShopInfo">
+        insert into db_shop values (null,#{suid.uid},#{sbid.bookid},#{snum},#{stime},#{sflag})
+    </insert>
+
+    <update id="updateShop" parameterType="ShopInfo">
+        update db_shop set snum=#{snum} where shopid=#{shopid}
+    </update>
+
+    <update id="updateShopFlag" parameterType="ShopInfo">
+        update db_shop set sflag=#{sflag} where shopid=#{shopid}
+    </update>
+
+
+</mapper>
